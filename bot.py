@@ -298,6 +298,16 @@ async def toggle_antinuke(ctx):
     status = "enabled" if config['antinuke']['enabled'] else "disabled"
     await ctx.send(f"Antinuke {status}.")
 
+@bot.command()
+@commands.has_permissions(administrator=True)
+async def set_prefix(ctx, new_prefix):
+    if len(new_prefix) > 5:
+        await ctx.send("Prefix must be 5 characters or less.")
+        return
+    config['prefix'] = new_prefix
+    save_config(config)
+    await ctx.send(f"Prefix changed to `{new_prefix}`. Please restart the bot for the change to take effect.")
+
 # Panel Command
 @bot.slash_command(name="panel", description="Displays the bot's command panel")
 async def panel(ctx):
