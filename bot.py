@@ -309,11 +309,11 @@ async def set_prefix(ctx, new_prefix):
     await ctx.send(f"Prefix changed to `{new_prefix}`. Please restart the bot for the change to take effect.")
 
 # Panel Command
-@bot.slash_command(name="panel", description="Displays the bot's command panel")
+@bot.command(name="panel")
 async def panel(ctx):
     embed = discord.Embed(
         title="🤖 Bot Command Panel",
-        description="Here's a list of all available commands organized by category. Use the slash commands or prefix commands as shown.",
+        description="Here's a list of all available commands organized by category. Use the commands as shown.",
         color=0x00ff00
     )
     
@@ -370,9 +370,9 @@ async def panel(ctx):
         inline=False
     )
     
-    embed.set_footer(text="Note: Most commands require administrator or specific permissions. Use /panel to view this again.")
+    embed.set_footer(text="Note: Most commands require administrator or specific permissions. Use !panel to view this again.")
     
-    await ctx.respond(embed=embed)
+    await ctx.send(embed=embed)
 
 # Run the bot
 bot.run('YOUR_BOT_TOKEN_HERE')
